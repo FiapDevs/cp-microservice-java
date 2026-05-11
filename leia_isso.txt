@@ -1,0 +1,1 @@
+Não esquecer de colocar suas credenciais para conectar no banco -> Arquivo application.properties
