@@ -1,4 +1,4 @@
-package br.com.fiap.residuo.exception;
+package br.com.fiap.coleta.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.http.HttpStatus;

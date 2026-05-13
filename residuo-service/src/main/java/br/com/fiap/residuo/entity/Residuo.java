@@ -42,7 +42,7 @@ public class Residuo {
     @Column(name = "DS_RESIDUO", length = 500)
     private String descricao;
 
-    @Column(name = "NR_QUANTIDADE", nullable = false)
+    @Column(name = "NR_QUANTIDADE", nullable = false, columnDefinition = "NUMBER(12,2)")
     private Double quantidade;
 
     @Column(name = "DS_UNIDADE_MEDIDA", nullable = false, length = 20)

@@ -1,5 +1,6 @@
 package br.com.fiap.residuo.service;
 
+import br.com.fiap.residuo.dto.OrientacaoDescarteResponseDTO;
 import br.com.fiap.residuo.dto.ResiduoRequestDTO;
 import br.com.fiap.residuo.dto.ResiduoResponseDTO;
 import br.com.fiap.residuo.entity.Residuo;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
@@ -27,8 +29,8 @@ public class ResiduoService {
     public ResiduoResponseDTO criar(ResiduoRequestDTO requestDTO) {
         Residuo residuo = Residuo.builder()
                 .idPontoColeta(validarIdPontoColeta(requestDTO.idPontoColeta()))
-                .nome(normalizarTextoObrigatorio(requestDTO.nome(), "O nome do resíduo é obrigatório"))
-                .tipoResiduo(normalizarTextoObrigatorio(requestDTO.tipoResiduo(), "O tipo do resíduo é obrigatório"))
+                .nome(normalizarTextoObrigatorio(requestDTO.nome(), "O nome do residuo e obrigatorio"))
+                .tipoResiduo(normalizarTextoObrigatorio(requestDTO.tipoResiduo(), "O tipo do residuo e obrigatorio").toUpperCase(Locale.ROOT))
                 .descricao(normalizarTextoOpcional(requestDTO.descricao()))
                 .quantidade(validarQuantidade(requestDTO.quantidade()))
                 .unidadeMedida(definirUnidadeMedida(requestDTO.unidadeMedida()))
@@ -57,8 +59,8 @@ public class ResiduoService {
         Residuo residuo = buscarEntidadePorId(id);
 
         residuo.setIdPontoColeta(validarIdPontoColeta(requestDTO.idPontoColeta()));
-        residuo.setNome(normalizarTextoObrigatorio(requestDTO.nome(), "O nome do resíduo é obrigatório"));
-        residuo.setTipoResiduo(normalizarTextoObrigatorio(requestDTO.tipoResiduo(), "O tipo do resíduo é obrigatório"));
+        residuo.setNome(normalizarTextoObrigatorio(requestDTO.nome(), "O nome do residuo e obrigatorio"));
+        residuo.setTipoResiduo(normalizarTextoObrigatorio(requestDTO.tipoResiduo(), "O tipo do residuo e obrigatorio").toUpperCase(Locale.ROOT));
         residuo.setDescricao(normalizarTextoOpcional(requestDTO.descricao()));
         residuo.setQuantidade(validarQuantidade(requestDTO.quantidade()));
         residuo.setUnidadeMedida(definirUnidadeMedida(requestDTO.unidadeMedida()));
@@ -99,14 +101,58 @@ public class ResiduoService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
+    public OrientacaoDescarteResponseDTO buscarOrientacaoDescarte(String tipoResiduo) {
+        String tipoNormalizado = normalizarTextoObrigatorio(tipoResiduo, "O tipo do residuo e obrigatorio")
+                .toUpperCase(Locale.ROOT);
+
+        return switch (tipoNormalizado) {
+            case "PAPEL" -> new OrientacaoDescarteResponseDTO(
+                    tipoNormalizado,
+                    "Coleta seletiva de papel e papelao",
+                    "Evite descartar papel sujo com restos de alimento."
+            );
+            case "PLASTICO" -> new OrientacaoDescarteResponseDTO(
+                    tipoNormalizado,
+                    "Coleta seletiva de plasticos reciclaveis",
+                    "Sempre que possivel, lave embalagens antes do descarte."
+            );
+            case "VIDRO" -> new OrientacaoDescarteResponseDTO(
+                    tipoNormalizado,
+                    "Ponto de coleta para vidro",
+                    "Embale vidros quebrados para evitar acidentes."
+            );
+            case "METAL" -> new OrientacaoDescarteResponseDTO(
+                    tipoNormalizado,
+                    "Coleta seletiva de metais",
+                    "Latas e pecas metalicas devem ser separadas dos residuos organicos."
+            );
+            case "ORGANICO" -> new OrientacaoDescarteResponseDTO(
+                    tipoNormalizado,
+                    "Compostagem ou coleta de residuos organicos",
+                    "Separe restos de alimentos de embalagens reciclaveis."
+            );
+            case "ELETRONICO" -> new OrientacaoDescarteResponseDTO(
+                    tipoNormalizado,
+                    "Ponto de coleta especifico para lixo eletronico",
+                    "Nao descarte baterias, pilhas ou equipamentos eletronicos no lixo comum."
+            );
+            default -> new OrientacaoDescarteResponseDTO(
+                    tipoNormalizado,
+                    "Verificar ponto de coleta adequado",
+                    "Consulte a prefeitura ou cooperativas locais para destinacao correta."
+            );
+        };
+    }
+
     private Residuo buscarEntidadePorId(Long id) {
         return residuoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Resíduo não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Residuo nao encontrado"));
     }
 
     private Long validarIdPontoColeta(Long idPontoColeta) {
         if (idPontoColeta == null) {
-            throw new BusinessException("O ID do ponto de coleta é obrigatório");
+            throw new BusinessException("O ID do ponto de coleta e obrigatorio");
         }
 
         return idPontoColeta;
@@ -114,11 +160,11 @@ public class ResiduoService {
 
     private Double validarQuantidade(Double quantidade) {
         if (quantidade == null) {
-            throw new BusinessException("A quantidade é obrigatória");
+            throw new BusinessException("A quantidade e obrigatoria");
         }
 
         if (quantidade < 0) {
-            throw new BusinessException("A quantidade não pode ser negativa");
+            throw new BusinessException("A quantidade nao pode ser negativa");
         }
 
         return quantidade;
@@ -130,10 +176,10 @@ public class ResiduoService {
         }
 
         if (unidadeMedida.isBlank()) {
-            throw new BusinessException("A unidade de medida não pode estar em branco");
+            throw new BusinessException("A unidade de medida nao pode estar em branco");
         }
 
-        return unidadeMedida.trim().toUpperCase();
+        return unidadeMedida.trim().toUpperCase(Locale.ROOT);
     }
 
     private String definirStatus(String status) {
@@ -146,10 +192,10 @@ public class ResiduoService {
 
     private String validarStatus(String status) {
         if (status == null || status.isBlank()) {
-            throw new BusinessException("O status é obrigatório");
+            throw new BusinessException("O status e obrigatorio");
         }
 
-        String statusNormalizado = status.trim().toUpperCase();
+        String statusNormalizado = status.trim().toUpperCase(Locale.ROOT);
         if (!STATUS_ATIVO.equals(statusNormalizado) && !STATUS_INATIVO.equals(statusNormalizado)) {
             throw new BusinessException("O status deve ser ATIVO ou INATIVO");
         }

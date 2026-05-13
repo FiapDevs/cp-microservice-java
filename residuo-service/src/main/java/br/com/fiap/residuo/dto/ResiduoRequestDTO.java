@@ -6,22 +6,22 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public record ResiduoRequestDTO(
-        @NotNull(message = "O ID do ponto de coleta é obrigatório")
+        @NotNull(message = "O ID do ponto de coleta e obrigatorio")
         Long idPontoColeta,
 
-        @NotBlank(message = "O nome do resíduo é obrigatório")
+        @NotBlank(message = "O nome do residuo e obrigatorio")
         String nome,
 
-        @NotBlank(message = "O tipo do resíduo é obrigatório")
+        @NotBlank(message = "O tipo do residuo e obrigatorio")
         String tipoResiduo,
 
         String descricao,
 
-        @NotNull(message = "A quantidade é obrigatória")
-        @DecimalMin(value = "0.0", inclusive = true, message = "A quantidade não pode ser negativa")
+        @NotNull(message = "A quantidade e obrigatoria")
+        @DecimalMin(value = "0.0", inclusive = true, message = "A quantidade nao pode ser negativa")
         Double quantidade,
 
-        @Pattern(regexp = "\\S.*", message = "A unidade de medida não pode estar em branco")
+        @Pattern(regexp = "\\S.*", message = "A unidade de medida nao pode estar em branco")
         String unidadeMedida,
 
         @Pattern(regexp = "(?i:ATIVO|INATIVO)", message = "O status deve ser ATIVO ou INATIVO")

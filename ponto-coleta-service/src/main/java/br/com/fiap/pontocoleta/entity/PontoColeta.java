@@ -45,16 +45,16 @@ public class PontoColeta {
     @Column(name = "NR_CEP", nullable = false, length = 10)
     private String cep;
 
-    @Column(name = "NR_LATITUDE")
+    @Column(name = "NR_LATITUDE", columnDefinition = "NUMBER(10,6)")
     private Double latitude;
 
-    @Column(name = "NR_LONGITUDE")
+    @Column(name = "NR_LONGITUDE", columnDefinition = "NUMBER(10,6)")
     private Double longitude;
 
-    @Column(name = "NR_CAPACIDADE_MAXIMA", nullable = false)
+    @Column(name = "NR_CAPACIDADE_MAXIMA", nullable = false, columnDefinition = "NUMBER(12,2)")
     private Double capacidadeMaxima;
 
-    @Column(name = "NR_CAPACIDADE_ATUAL", nullable = false)
+    @Column(name = "NR_CAPACIDADE_ATUAL", nullable = false, columnDefinition = "NUMBER(12,2)")
     private Double capacidadeAtual;
 
     @Column(name = "DS_TIPO_RESIDUO_ACEITO", nullable = false, length = 80)

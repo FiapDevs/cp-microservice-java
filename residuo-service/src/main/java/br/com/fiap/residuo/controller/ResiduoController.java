@@ -1,5 +1,6 @@
 package br.com.fiap.residuo.controller;
 
+import br.com.fiap.residuo.dto.OrientacaoDescarteResponseDTO;
 import br.com.fiap.residuo.dto.ResiduoRequestDTO;
 import br.com.fiap.residuo.dto.ResiduoResponseDTO;
 import br.com.fiap.residuo.service.ResiduoService;
@@ -67,5 +68,10 @@ public class ResiduoController {
     @GetMapping("/status/{status}")
     public ResponseEntity<List<ResiduoResponseDTO>> buscarPorStatus(@PathVariable String status) {
         return ResponseEntity.ok(residuoService.buscarPorStatus(status));
+    }
+
+    @GetMapping("/orientacao-descarte/{tipoResiduo}")
+    public ResponseEntity<OrientacaoDescarteResponseDTO> buscarOrientacaoDescarte(@PathVariable String tipoResiduo) {
+        return ResponseEntity.ok(residuoService.buscarOrientacaoDescarte(tipoResiduo));
     }
 }
