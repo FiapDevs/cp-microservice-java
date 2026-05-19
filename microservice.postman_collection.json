@@ -1,0 +1,815 @@
+{
+  "info": {
+    "name": "CP Eco Microservice - Gestao de Residuos e Reciclagem",
+    "description": "Collection com todos os endpoints dos tres microsservicos: ponto-coleta-service, residuo-service e coleta-service.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Ponto de Coleta Service",
+      "item": [
+        {
+          "name": "Criar ponto de coleta",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Ecoponto Vila Mariana\",\n  \"endereco\": \"Rua Domingos de Morais, 1000\",\n  \"cidade\": \"Sao Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"04010-100\",\n  \"latitude\": -23.5892,\n  \"longitude\": -46.6345,\n  \"capacidadeMaxima\": 500.0,\n  \"capacidadeAtual\": 120.0,\n  \"tipoResiduoAceito\": \"PLASTICO\",\n  \"status\": \"ATIVO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{basePontoColeta}}/api/pontos-coleta",
+              "host": [
+                "{{basePontoColeta}}"
+              ],
+              "path": [
+                "api",
+                "pontos-coleta"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pontos de coleta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{basePontoColeta}}/api/pontos-coleta",
+              "host": [
+                "{{basePontoColeta}}"
+              ],
+              "path": [
+                "api",
+                "pontos-coleta"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar ponto de coleta por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{basePontoColeta}}/api/pontos-coleta/{{pontoColetaId}}",
+              "host": [
+                "{{basePontoColeta}}"
+              ],
+              "path": [
+                "api",
+                "pontos-coleta",
+                "{{pontoColetaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar ponto de coleta",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Ecoponto Vila Mariana Atualizado\",\n  \"endereco\": \"Rua Domingos de Morais, 1000\",\n  \"cidade\": \"Sao Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"04010-100\",\n  \"latitude\": -23.5892,\n  \"longitude\": -46.6345,\n  \"capacidadeMaxima\": 500.0,\n  \"capacidadeAtual\": 180.0,\n  \"tipoResiduoAceito\": \"PLASTICO\",\n  \"status\": \"ATIVO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{basePontoColeta}}/api/pontos-coleta/{{pontoColetaId}}",
+              "host": [
+                "{{basePontoColeta}}"
+              ],
+              "path": [
+                "api",
+                "pontos-coleta",
+                "{{pontoColetaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar ponto de coleta",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{basePontoColeta}}/api/pontos-coleta/{{pontoColetaId}}",
+              "host": [
+                "{{basePontoColeta}}"
+              ],
+              "path": [
+                "api",
+                "pontos-coleta",
+                "{{pontoColetaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar pontos por cidade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{basePontoColeta}}/api/pontos-coleta/cidade/Sao Paulo",
+              "host": [
+                "{{basePontoColeta}}"
+              ],
+              "path": [
+                "api",
+                "pontos-coleta",
+                "cidade",
+                "Sao Paulo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar pontos por status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{basePontoColeta}}/api/pontos-coleta/status/ATIVO",
+              "host": [
+                "{{basePontoColeta}}"
+              ],
+              "path": [
+                "api",
+                "pontos-coleta",
+                "status",
+                "ATIVO"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar pontos por tipo de residuo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{basePontoColeta}}/api/pontos-coleta/tipo-residuo/PLASTICO",
+              "host": [
+                "{{basePontoColeta}}"
+              ],
+              "path": [
+                "api",
+                "pontos-coleta",
+                "tipo-residuo",
+                "PLASTICO"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar alertas de capacidade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{basePontoColeta}}/api/pontos-coleta/alertas-capacidade?percentualMinimo=80",
+              "host": [
+                "{{basePontoColeta}}"
+              ],
+              "path": [
+                "api",
+                "pontos-coleta",
+                "alertas-capacidade"
+              ],
+              "query": [
+                {
+                  "key": "percentualMinimo",
+                  "value": "80",
+                  "description": "Percentual minimo de ocupacao para gerar alerta"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Residuo Service",
+      "item": [
+        {
+          "name": "Criar residuo",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idPontoColeta\": 1,\n  \"nome\": \"Garrafa plastica\",\n  \"tipoResiduo\": \"PLASTICO\",\n  \"descricao\": \"Residuo plastico reciclavel\",\n  \"quantidade\": 120.0,\n  \"unidadeMedida\": \"KG\",\n  \"status\": \"ATIVO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseResiduo}}/api/residuos",
+              "host": [
+                "{{baseResiduo}}"
+              ],
+              "path": [
+                "api",
+                "residuos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar residuos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseResiduo}}/api/residuos",
+              "host": [
+                "{{baseResiduo}}"
+              ],
+              "path": [
+                "api",
+                "residuos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar residuo por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseResiduo}}/api/residuos/{{residuoId}}",
+              "host": [
+                "{{baseResiduo}}"
+              ],
+              "path": [
+                "api",
+                "residuos",
+                "{{residuoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar residuo",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idPontoColeta\": 1,\n  \"nome\": \"Garrafa plastica atualizada\",\n  \"tipoResiduo\": \"PLASTICO\",\n  \"descricao\": \"Residuo plastico reciclavel atualizado\",\n  \"quantidade\": 150.0,\n  \"unidadeMedida\": \"KG\",\n  \"status\": \"ATIVO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseResiduo}}/api/residuos/{{residuoId}}",
+              "host": [
+                "{{baseResiduo}}"
+              ],
+              "path": [
+                "api",
+                "residuos",
+                "{{residuoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar residuo",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseResiduo}}/api/residuos/{{residuoId}}",
+              "host": [
+                "{{baseResiduo}}"
+              ],
+              "path": [
+                "api",
+                "residuos",
+                "{{residuoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar residuos por ponto de coleta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseResiduo}}/api/residuos/ponto-coleta/{{pontoColetaId}}",
+              "host": [
+                "{{baseResiduo}}"
+              ],
+              "path": [
+                "api",
+                "residuos",
+                "ponto-coleta",
+                "{{pontoColetaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar residuos por tipo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseResiduo}}/api/residuos/tipo/PLASTICO",
+              "host": [
+                "{{baseResiduo}}"
+              ],
+              "path": [
+                "api",
+                "residuos",
+                "tipo",
+                "PLASTICO"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar residuos por status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseResiduo}}/api/residuos/status/ATIVO",
+              "host": [
+                "{{baseResiduo}}"
+              ],
+              "path": [
+                "api",
+                "residuos",
+                "status",
+                "ATIVO"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar orientacao de descarte",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseResiduo}}/api/residuos/orientacao-descarte/PLASTICO",
+              "host": [
+                "{{baseResiduo}}"
+              ],
+              "path": [
+                "api",
+                "residuos",
+                "orientacao-descarte",
+                "PLASTICO"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Coleta Service",
+      "item": [
+        {
+          "name": "Criar agendamento de coleta",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idPontoColeta\": 1,\n  \"idResiduo\": 1,\n  \"dataAgendamento\": \"2026-05-20T10:00:00\",\n  \"dataColeta\": null,\n  \"quantidadeColetada\": null,\n  \"status\": \"AGENDADA\",\n  \"observacao\": \"Coleta seletiva semanal\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseColeta}}/api/coletas",
+              "host": [
+                "{{baseColeta}}"
+              ],
+              "path": [
+                "api",
+                "coletas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar coletas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseColeta}}/api/coletas",
+              "host": [
+                "{{baseColeta}}"
+              ],
+              "path": [
+                "api",
+                "coletas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar coleta por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseColeta}}/api/coletas/{{coletaId}}",
+              "host": [
+                "{{baseColeta}}"
+              ],
+              "path": [
+                "api",
+                "coletas",
+                "{{coletaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar coleta",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idPontoColeta\": 1,\n  \"idResiduo\": 1,\n  \"dataAgendamento\": \"2026-05-21T10:00:00\",\n  \"dataColeta\": null,\n  \"quantidadeColetada\": null,\n  \"status\": \"AGENDADA\",\n  \"observacao\": \"Coleta seletiva reagendada\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseColeta}}/api/coletas/{{coletaId}}",
+              "host": [
+                "{{baseColeta}}"
+              ],
+              "path": [
+                "api",
+                "coletas",
+                "{{coletaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar ou cancelar coleta",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseColeta}}/api/coletas/{{coletaId}}",
+              "host": [
+                "{{baseColeta}}"
+              ],
+              "path": [
+                "api",
+                "coletas",
+                "{{coletaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar coletas por ponto de coleta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseColeta}}/api/coletas/ponto-coleta/{{pontoColetaId}}",
+              "host": [
+                "{{baseColeta}}"
+              ],
+              "path": [
+                "api",
+                "coletas",
+                "ponto-coleta",
+                "{{pontoColetaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar coletas por residuo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseColeta}}/api/coletas/residuo/{{residuoId}}",
+              "host": [
+                "{{baseColeta}}"
+              ],
+              "path": [
+                "api",
+                "coletas",
+                "residuo",
+                "{{residuoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar coletas por status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseColeta}}/api/coletas/status/AGENDADA",
+              "host": [
+                "{{baseColeta}}"
+              ],
+              "path": [
+                "api",
+                "coletas",
+                "status",
+                "AGENDADA"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Gerar resumo operacional",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseColeta}}/api/coletas/resumo",
+              "host": [
+                "{{baseColeta}}"
+              ],
+              "path": [
+                "api",
+                "coletas",
+                "resumo"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "basePontoColeta",
+      "value": "http://localhost:8081",
+      "type": "string"
+    },
+    {
+      "key": "baseResiduo",
+      "value": "http://localhost:8082",
+      "type": "string"
+    },
+    {
+      "key": "baseColeta",
+      "value": "http://localhost:8083",
+      "type": "string"
+    },
+    {
+      "key": "username",
+      "value": "admin",
+      "type": "string"
+    },
+    {
+      "key": "password",
+      "value": "admin123",
+      "type": "string"
+    },
+    {
+      "key": "pontoColetaId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "residuoId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "coletaId",
+      "value": "1",
+      "type": "string"
+    }
+  ]
+}
