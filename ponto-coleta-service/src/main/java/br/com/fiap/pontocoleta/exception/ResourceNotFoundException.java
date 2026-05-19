@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta.exception;
+package br.com.fiap.pontocoleta.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta.service;
+package br.com.fiap.pontocoleta.service;
 
 import br.com.fiap.pontocoleta.dto.AlertaCapacidadeResponseDTO;
 import br.com.fiap.pontocoleta.dto.PontoColetaRequestDTO;

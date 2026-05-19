@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta.dto;
+package br.com.fiap.pontocoleta.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

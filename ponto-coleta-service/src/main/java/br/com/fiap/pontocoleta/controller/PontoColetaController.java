@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta.controller;
+package br.com.fiap.pontocoleta.controller;
 
 import br.com.fiap.pontocoleta.dto.AlertaCapacidadeResponseDTO;
 import br.com.fiap.pontocoleta.dto.PontoColetaRequestDTO;

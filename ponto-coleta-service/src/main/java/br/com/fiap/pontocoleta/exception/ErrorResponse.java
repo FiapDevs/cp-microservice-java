@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta.exception;
+package br.com.fiap.pontocoleta.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

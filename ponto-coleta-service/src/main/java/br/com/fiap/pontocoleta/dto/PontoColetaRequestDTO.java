@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta.dto;
+package br.com.fiap.pontocoleta.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;

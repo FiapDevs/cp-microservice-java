@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta.exception;
+package br.com.fiap.pontocoleta.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

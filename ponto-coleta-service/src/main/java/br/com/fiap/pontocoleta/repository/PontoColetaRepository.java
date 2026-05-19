@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta.repository;
+package br.com.fiap.pontocoleta.repository;
 
 import br.com.fiap.pontocoleta.entity.PontoColeta;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta.entity;
+package br.com.fiap.pontocoleta.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,7 +39,7 @@ public class PontoColeta {
     @Column(name = "NM_CIDADE", nullable = false, length = 100)
     private String cidade;
 
-    @Column(name = "SG_ESTADO", nullable = false, length = 2)
+    @Column(name = "SG_ESTADO", nullable = false, columnDefinition = "CHAR(2)")
     private String estado;
 
     @Column(name = "NR_CEP", nullable = false, length = 10)

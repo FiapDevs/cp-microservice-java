@@ -1,4 +1,4 @@
-﻿package br.com.fiap.pontocoleta;
+package br.com.fiap.pontocoleta;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
